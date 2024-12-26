@@ -1,0 +1,9 @@
+.vscode/launch.json
+client
+mocks
+controller/mocks
+mongo/mocks
+out
+coverage.out
+*.out
+__debug_bin
