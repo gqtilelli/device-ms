@@ -18,7 +18,6 @@ import (
 type DeviceNameUpdateRequest struct {
 
 	// The name of the device
-
 	Name string `json:"name,omitempty"`
 }
 

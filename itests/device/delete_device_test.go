@@ -20,14 +20,14 @@ func Test_DeleteDevice(t *testing.T) {
 	t.Run("fail invalid id", func(t *testing.T) {
 		dvIDStr := "12345"
 		params := device.NewDeleteDeviceParams().WithID(dvIDStr)
-		_, err := iti.ServiceClient.Device.DeleteDevice(params, iti.AuthDelegate)
+		_, err := iti.ServiceClient.Device.DeleteDevice(params)
 		require.EqualError(t, err, "[DELETE /{id}][400] deleteDeviceBadRequest {\"code\":1500002,\"message\":\"parameter 'id' is invalid 'invalid object id ["+dvIDStr+"]'\"}")
 	})
 
 	t.Run("fail device not found", func(t *testing.T) {
 		dvID := primitive.NewObjectID()
 		params := device.NewDeleteDeviceParams().WithID(dvID.Hex())
-		_, err := iti.ServiceClient.Device.DeleteDevice(params, iti.AuthDelegate)
+		_, err := iti.ServiceClient.Device.DeleteDevice(params)
 		require.EqualError(t, err, "[DELETE /{id}][500] deleteDeviceInternalServerError {\"code\":1500005,\"message\":\"the device with id "+dvID.Hex()+" could not be found: mongo: no documents in result\"}")
 	})
 
@@ -40,7 +40,7 @@ func Test_DeleteDevice(t *testing.T) {
 		require.NoError(t, err)
 
 		params := device.NewDeleteDeviceParams().WithID(dv.ID.Hex())
-		_, err = iti.ServiceClient.Device.DeleteDevice(params, iti.AuthDelegate)
+		_, err = iti.ServiceClient.Device.DeleteDevice(params)
 		require.NoError(t, err)
 
 		_, err = iti.DeviceRepository.ByID(ctx, dv.ID)

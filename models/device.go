@@ -20,20 +20,16 @@ import (
 type Device struct {
 
 	// The brand of the device
-
 	Brand string `json:"brand,omitempty"`
 
 	// The time the device was created
 	// Format: date-time
-
 	CreatedAt strfmt.DateTime `json:"createdAt,omitempty"`
 
 	// The id of the device
-
 	ID string `json:"id,omitempty"`
 
 	// The name of the device
-
 	Name string `json:"name,omitempty"`
 }
 

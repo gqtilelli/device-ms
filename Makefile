@@ -21,4 +21,16 @@ runmongo:
 rundevice:
 	MONGO_URI="mongodb://localhost:27017/" go run main.go
 
-.PHONY: mongo testclean
+builddockerdevice:
+	docker build --tag device-ms .
+
+devnet:
+	docker network create devnet
+
+rundevnetmongo:
+	docker run --name devnetmongodb -d --network devnet mongo
+
+rundevnetdevice:
+	docker run --name device-ms -e MONGO_URI="mongodb://devnetmongodb:27017/" -d --network devnet -p 8080:8080 device-ms
+
+.PHONY: testclean runmongo rundevice builddockerdevice devnet rundevnetmongo rundevnetdevice

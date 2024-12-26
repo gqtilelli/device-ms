@@ -25,7 +25,7 @@ func Test_UpdateDevice(t *testing.T) {
 			Brand: "brand3",
 		}
 		params := device.NewUpdateDeviceParams().WithID(id).WithDeviceUpdateRequestBody(&dvUpd)
-		_, err := iti.ServiceClient.Device.UpdateDevice(params, iti.AuthDelegate)
+		_, err := iti.ServiceClient.Device.UpdateDevice(params)
 		require.EqualError(t, err, "[PUT /{id}][400] updateDeviceBadRequest {\"code\":1500002,\"message\":\"parameter 'id' is invalid 'invalid object id [12345]'\"}")
 	})
 
@@ -35,7 +35,7 @@ func Test_UpdateDevice(t *testing.T) {
 			Name: "earth",
 		}
 		params := device.NewUpdateDeviceParams().WithID(id.Hex()).WithDeviceUpdateRequestBody(&dvUpd)
-		_, err := iti.ServiceClient.Device.UpdateDevice(params, iti.AuthDelegate)
+		_, err := iti.ServiceClient.Device.UpdateDevice(params)
 		require.EqualError(t, err, "[PUT /{id}][400] updateDeviceBadRequest {\"code\":1500001,\"message\":\"parameter 'brand' in body is required\"}")
 	})
 
@@ -46,7 +46,7 @@ func Test_UpdateDevice(t *testing.T) {
 			Brand: "brand two",
 		}
 		params := device.NewUpdateDeviceParams().WithID(id.Hex()).WithDeviceUpdateRequestBody(&dvUpd)
-		_, err := iti.ServiceClient.Device.UpdateDevice(params, iti.AuthDelegate)
+		_, err := iti.ServiceClient.Device.UpdateDevice(params)
 		require.EqualError(t, err, "[PUT /{id}][400] updateDeviceBadRequest {\"code\":1500002,\"message\":\"parameter 'brand' is invalid 'invalid value [brand two]'\"}")
 	})
 
@@ -57,7 +57,7 @@ func Test_UpdateDevice(t *testing.T) {
 			Brand: "brand2",
 		}
 		params := device.NewUpdateDeviceParams().WithID(id.Hex()).WithDeviceUpdateRequestBody(&dvUpd)
-		_, err := iti.ServiceClient.Device.UpdateDevice(params, iti.AuthDelegate)
+		_, err := iti.ServiceClient.Device.UpdateDevice(params)
 		require.EqualError(t, err, "[PUT /{id}][500] updateDeviceInternalServerError {\"code\":1500005,\"message\":\"the device with id "+id.Hex()+" could not be found: mongo: no documents in result\"}")
 	})
 
@@ -79,7 +79,7 @@ func Test_UpdateDevice(t *testing.T) {
 			Name:  "marte",
 			Brand: "brand3",
 		})
-		_, err = iti.ServiceClient.Device.UpdateDevice(params, iti.AuthDelegate)
+		_, err = iti.ServiceClient.Device.UpdateDevice(params)
 		require.NoError(t, err)
 
 		dvBD1, err := iti.DeviceRepository.ByID(ctx, dv.ID)

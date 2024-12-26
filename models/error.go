@@ -18,15 +18,12 @@ import (
 type Error struct {
 
 	// code
-
 	Code float64 `json:"code,omitempty"`
 
 	// message
-
 	Message string `json:"message,omitempty"`
 
 	// result
-
 	Result bool `json:"result,omitempty"`
 }
 
