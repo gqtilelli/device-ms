@@ -157,8 +157,6 @@ paths:
           description: A problem when processing the request
           schema:
             $ref: "#/definitions/Error"
-      security:
-        - venueId: []
       tags:
         - Device
   /{id}:
@@ -227,8 +225,6 @@ paths:
           description: A problem when processing the request
           schema:
             $ref: "#/definitions/Error"
-      security:
-        - profileId: []
       tags:
         - Device
     delete:
@@ -259,8 +255,6 @@ paths:
           description: A problem when processing the request
           schema:
             $ref: "#/definitions/Error"
-      security:
-        - profileId: []
       tags:
         - Device
   /{id}/name:

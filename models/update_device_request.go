@@ -18,11 +18,9 @@ import (
 type UpdateDeviceRequest struct {
 
 	// The brand of the device
-
 	Brand string `json:"brand,omitempty"`
 
 	// The name of the device
-
 	Name string `json:"name,omitempty"`
 }
 

@@ -20,7 +20,7 @@ func Test_CreateDevice(t *testing.T) {
 
 	t.Run("fail with missing required field brand", func(t *testing.T) {
 		params := device.NewCreateDeviceParams().WithDeviceCreationRequestBody(&models.CreateDeviceRequest{})
-		_, err := iti.ServiceClient.Device.CreateDevice(params, iti.AuthDelegate)
+		_, err := iti.ServiceClient.Device.CreateDevice(params)
 		require.EqualError(t, err, "[POST /][400] createDeviceBadRequest {\"code\":1500001,\"message\":\"parameter 'brand' in body is required\"}")
 	})
 
@@ -28,7 +28,7 @@ func Test_CreateDevice(t *testing.T) {
 		params := device.NewCreateDeviceParams().WithDeviceCreationRequestBody(&models.CreateDeviceRequest{
 			Brand: "brand one",
 		})
-		_, err := iti.ServiceClient.Device.CreateDevice(params, iti.AuthDelegate)
+		_, err := iti.ServiceClient.Device.CreateDevice(params)
 		require.EqualError(t, err, "[POST /][400] createDeviceBadRequest {\"code\":1500002,\"message\":\"parameter 'brand' is invalid 'invalid value [brand one]'\"}")
 	})
 
@@ -37,7 +37,7 @@ func Test_CreateDevice(t *testing.T) {
 			Brand: "brand3",
 			Name:  "earth",
 		})
-		deviceCreated, err := iti.ServiceClient.Device.CreateDevice(params, iti.AuthDelegate)
+		deviceCreated, err := iti.ServiceClient.Device.CreateDevice(params)
 		require.NoError(t, err)
 		require.Equal(t, "earth", deviceCreated.Payload.Name)
 		dvID, err := primitive.ObjectIDFromHex(deviceCreated.Payload.ID)

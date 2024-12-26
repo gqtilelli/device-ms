@@ -18,7 +18,6 @@ import (
 type DeviceBrandUpdateRequest struct {
 
 	// The brand of the device
-
 	Brand string `json:"brand,omitempty"`
 }
 

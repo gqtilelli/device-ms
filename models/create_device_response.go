@@ -18,11 +18,9 @@ import (
 type CreateDeviceResponse struct {
 
 	// The id of the device
-
 	ID string `json:"id,omitempty"`
 
 	// The name of the device
-
 	Name string `json:"name,omitempty"`
 }
 
